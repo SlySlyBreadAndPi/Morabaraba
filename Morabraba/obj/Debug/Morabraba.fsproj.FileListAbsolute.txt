@@ -1,0 +1,9 @@
+c:\users\g15d1313\source\repos\Morabraba\Morabraba\bin\Debug\Morabraba.exe.config
+c:\users\g15d1313\source\repos\Morabraba\Morabraba\bin\Debug\Morabraba.XML
+c:\users\g15d1313\source\repos\Morabraba\Morabraba\bin\Debug\Morabraba.exe
+c:\users\g15d1313\source\repos\Morabraba\Morabraba\bin\Debug\Morabraba.pdb
+c:\users\g15d1313\source\repos\Morabraba\Morabraba\bin\Debug\FSharp.Core.dll
+c:\users\g15d1313\source\repos\Morabraba\Morabraba\bin\Debug\System.ValueTuple.dll
+c:\users\g15d1313\source\repos\Morabraba\Morabraba\bin\Debug\FSharp.Core.xml
+c:\users\g15d1313\source\repos\Morabraba\Morabraba\obj\Debug\Morabraba.exe
+c:\users\g15d1313\source\repos\Morabraba\Morabraba\obj\Debug\Morabraba.pdb
