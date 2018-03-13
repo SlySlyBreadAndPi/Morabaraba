@@ -7,3 +7,4 @@ c:\users\g15d1313\source\repos\Morabraba\Morabraba\bin\Debug\System.ValueTuple.d
 c:\users\g15d1313\source\repos\Morabraba\Morabraba\bin\Debug\FSharp.Core.xml
 c:\users\g15d1313\source\repos\Morabraba\Morabraba\obj\Debug\Morabraba.exe
 c:\users\g15d1313\source\repos\Morabraba\Morabraba\obj\Debug\Morabraba.pdb
+c:\users\g15d1313\source\repos\Morabraba\Morabraba\obj\Debug\Morabraba.fsprojResolveAssemblyReference.cache

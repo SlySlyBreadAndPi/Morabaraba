@@ -158,11 +158,12 @@ let GetMills adjacentMills board cow= let rec GetMills adjacentM board newList f
                                                                                               match index <> -1 && index1<> -1&&index2<> -1 with
                                                                                               |true -> let onboard = board|> List.item(index)
                                                                                                        let onboard2 = board|>List.item(index1)
-                                                                                                       match onboard=cow && onboard2=cow with
+                                                                                                       let onboard3 = board|>List.item(index2)
+                                                                                                       match onboard=cow && onboard2=cow && onboard3=cow with
                                                                                                        |true -> let nList =newList@[({Index=index;Color=cow;InAMill=true},{Index=index1;Color=cow;InAMill=true},{Index=index2;Color=cow;InAMill=true})]
                                                                                                                 GetMills [] board nList true
-                                                                                                       |false -> GetMills B board newList false
-                                                                                              |false->GetMills B board newList false
+                                                                                                       |false -> GetMills B board newList found
+                                                                                              |false->GetMills B board newList found
                                       GetMills adjacentMills board [] false                                                                   
 let CheckForMills board player = 
                                  let rec CheckForMills board plyr mills boardInner index found= let {Pieces=count;MoveState=mState;Mills=mill;TypeofCow=cow} =plyr
@@ -187,6 +188,7 @@ let updateShotCowinAMill input mills2 =
                                                                                                            |false ->(({InAMill=a.InAMill;Color=a.Color;Index=a.Index},{InAMill=b.InAMill;Color=b.Color;Index=b.Index},{InAMill=false;Color=Nothing;Index=c.Index})::nlist)
                                        updateShotCowinAMill mills2 input [] 
 let updateoptions input options = options|> List.filter(fun t -> t<>input)
+let Addoptions input options = input::options
 let GetFoundMillToRemove list =let rec GetFoundMillToRemove list orignalList status=
                                                                                      match list with 
                                                                                      |[]-> (orignalList|>List.map(fun t-> let a,b=t
@@ -201,8 +203,9 @@ let removeCow input list playerCow =let input=ConvertRowColumnToIndex input
                                                                                    |true -> {InAMill=false;Color=Nothing;Index=input},true
                                                                                    |false ->item,false)|>GetFoundMillToRemove
                                     newBoard    
-let removeCowMills input list =let input=ConvertRowColumnToIndex input
-                               let newBoard = list|>List.mapi(fun indx item-> match indx=input with
+let removeCowMills input list playerCow =
+                               let input=ConvertRowColumnToIndex input
+                               let newBoard = list|>List.mapi(fun indx item-> match indx=input && item.Color <> Nothing && item.Color <> playerCow with
                                                                               |true -> {InAMill=false;Color=Nothing;Index=input},true
                                                                               |false ->item,false)|>GetFoundMillToRemove
                                newBoard
@@ -210,7 +213,7 @@ let ShootCow player optionslist player2 board = let {Pieces=p1;MoveState=state;M
                                                 let {Pieces=p2;MoveState=state2;Mills=mills2;TypeofCow=cow2}=player2 
                                                 let rec SelectMilltoremove board optionsList=
                                                                                              Console.WriteLine("Please enter a cow position on the board to removed from the opponents cow set")
-                                                                                             let input =Console.ReadLine()
+                                                                                             let input =Console.ReadLine().ToUpper()
                                                                                              let converted = ConvertRowColumnToIndex input
                                                                                              match (String.IsNullOrEmpty(input))=false&&converted <> -1 with
                                                                                              |true-> match p1>0 && p2 >0 with //when both players still have cows that they can still place on the board
@@ -221,10 +224,10 @@ let ShootCow player optionslist player2 board = let {Pieces=p1;MoveState=state;M
                                                                                                                         Console.WriteLine("Cannot shoot cow in a mill  or place on the board that has no cow placed or remove a cow that you have placed please select a different cow to shoot!")
                                                                                                                         Console.ForegroundColor<-ConsoleColor.White
                                                                                                                         SelectMilltoremove board optionsList
-                                                                                                              |true-> let updatedOps= updateoptions input optionslist
+                                                                                                              |true-> let updatedOps= Addoptions input optionslist
                                                                                                                       (updatedOps,boardUpdated1,player,player2)
-                                                                                                     |false->let boardUpdated = removeCowMills input board
-                                                                                                             let boardUpdated1,didFindValidMill=boardUpdated // did findValidMill is a variable that we can use to check if a cow which was not in a mill indeed removed if yes the value will be true else false we ask the user to enter a valid cow to remove
+                                                                                                     |false->let boardUpdated = removeCowMills input board 
+                                                                                                             let boardUpdated1,didFindValidMill=boardUpdated cow // did findValidMill is a variable that we can use to check if a cow which was not in a mill indeed removed if yes the value will be true else false we ask the user to enter a valid cow to remove
                                                                                                              let updatedOps= updateoptions input optionslist
                                                                                                              let updatedp2 = updateShotCowinAMill converted mills2
                                                                                                              (updatedOps,boardUpdated1,player,{Pieces=p2;MoveState=state2;Mills=updatedp2;TypeofCow=cow2})
@@ -249,6 +252,7 @@ let PlayerColor color =match color with
                        |Dark ->Console.ForegroundColor<-ConsoleColor.DarkYellow
                        |Light -> Console.ForegroundColor<-ConsoleColor.Blue
                        |_-> Console.ForegroundColor<-ConsoleColor.White
+let ValidMove input options =options|>List.exists(fun t -> t=input)
 let Game = 
     let board = CreateBoard
     let input =getUserInput 0
@@ -265,34 +269,36 @@ let Game =
                                                |P1-> PlayerColor p1.TypeofCow
                                                      Console.WriteLine("Player 1's turn")
                                                      PlayerColor Nothing
-                                                     let input = Console.ReadLine()
-                                                     match ConvertRowColumnToIndex input = -1 with
-                                                     |true -> Console.ForegroundColor<-ConsoleColor.Red
-                                                              Console.WriteLine("Please select a valid Position")
-                                                              Console.ForegroundColor<-ConsoleColor.White
-                                                              Game p1 p2 board optionslist P1
-                                                     |false ->let newBoard= MakeMove input board p1
+                                                     let input = Console.ReadLine().ToUpper()
+                                                     let x = (ValidMove (input.ToUpper()) optionslist)
+                                                     let y = ((ConvertRowColumnToIndex input) <> -1)
+                                                     match y && x with
+                                                     |false -> Console.ForegroundColor<-ConsoleColor.Red
+                                                               Console.WriteLine("Please select a valid Position")
+                                                               Console.ForegroundColor<-ConsoleColor.White
+                                                               Game p1 p2 board optionslist P1
+                                                     |true -> let newBoard= MakeMove input board p1
                                                               let nboard,newplayer1=newBoard
                                                               let updatedPlayer= CheckForMills nboard newplayer1
                                                               let updatedoptions= updateoptions input optionslist
                                                               let updatePlayer,status=updatedPlayer
                                                               match status with
                                                               |false ->Game newplayer1 p2  nboard updatedoptions P2
-                                                              |true-> let shotCow = ShootCow updatePlayer optionslist p1 (map newplayer1 p2 (nboard|>List.map(fun item -> (translate item))))
+                                                              |true-> let shotCow = ShootCow updatePlayer optionslist p2 (map newplayer1 p2 (nboard|>List.map(fun item -> (translate item))))
                                                                       let options,newBoard,p1,p2=shotCow
-                                                                      let options = updateoptions input optionslist
+                                                                      let options = Addoptions input optionslist
                                                                       let nboard = newBoard|>List.map(fun t -> reversetranslate (translate t.Color))
                                                                       Game p1 p2 nboard options P2
                                                |_->  PlayerColor p2.TypeofCow
                                                      Console.WriteLine("Player 2's turn")
                                                      PlayerColor Nothing
-                                                     let input = Console.ReadLine()
-                                                     match ConvertRowColumnToIndex input = -1 with
-                                                     |true -> Console.ForegroundColor<-ConsoleColor.Red
+                                                     let input = Console.ReadLine().ToUpper()
+                                                     match ((ConvertRowColumnToIndex input) <> -1) && ((ValidMove (input.ToUpper()) optionslist))with
+                                                     |false ->Console.ForegroundColor<-ConsoleColor.Red
                                                               Console.WriteLine("Please select a valid Position")
                                                               Console.ForegroundColor<-ConsoleColor.White
                                                               Game p1 p2 board optionslist P2
-                                                     |false ->let newBoard= MakeMove input board p2
+                                                     |true -> let newBoard= MakeMove input board p2
                                                               let nboard,newplayer2=newBoard
                                                               let updatedPlayer= CheckForMills nboard newplayer2
                                                               let updatedoptions= updateoptions input optionslist
@@ -310,7 +316,7 @@ let Game =
 [<EntryPoint>]
 let main argv = 
   Game
-  Console.ReadLine()
+  let x = Console.ReadLine()
   0
   //To Add to Game
   //Add checking for winner
@@ -322,3 +328,8 @@ let main argv =
 //A win occurs if a player has just two cows
 //If either player has only three cows and neither player shoots a cow within ten moves, the game is drawn
 //If one person cheats, then the other one wins by default
+
+//To fix: options not appearing as they should after being removed by shooting
+//indentation 
+//merging from two game functions into one
+//a1L d1D g1L d2D a7L d3D elimating a1L  a4L b5L causes a mill
