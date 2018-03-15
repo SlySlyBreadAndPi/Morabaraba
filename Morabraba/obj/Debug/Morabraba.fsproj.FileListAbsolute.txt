@@ -1,13 +1,3 @@
-c:\users\g15d1313\source\repos\Morabraba\Morabraba\bin\Debug\Morabraba.exe.config
-c:\users\g15d1313\source\repos\Morabraba\Morabraba\bin\Debug\Morabraba.XML
-c:\users\g15d1313\source\repos\Morabraba\Morabraba\bin\Debug\Morabraba.exe
-c:\users\g15d1313\source\repos\Morabraba\Morabraba\bin\Debug\Morabraba.pdb
-c:\users\g15d1313\source\repos\Morabraba\Morabraba\bin\Debug\FSharp.Core.dll
-c:\users\g15d1313\source\repos\Morabraba\Morabraba\bin\Debug\System.ValueTuple.dll
-c:\users\g15d1313\source\repos\Morabraba\Morabraba\bin\Debug\FSharp.Core.xml
-c:\users\g15d1313\source\repos\Morabraba\Morabraba\obj\Debug\Morabraba.exe
-c:\users\g15d1313\source\repos\Morabraba\Morabraba\obj\Debug\Morabraba.pdb
-c:\users\g15d1313\source\repos\Morabraba\Morabraba\obj\Debug\Morabraba.fsprojResolveAssemblyReference.cache
 C:\Users\g15d1313\Source\Repos\Morabaraba\Morabraba\bin\Debug\Morabraba.exe.config
 C:\Users\g15d1313\Source\Repos\Morabaraba\Morabraba\bin\Debug\Morabraba.XML
 C:\Users\g15d1313\Source\Repos\Morabaraba\Morabraba\bin\Debug\Morabraba.exe
@@ -15,6 +5,5 @@ C:\Users\g15d1313\Source\Repos\Morabaraba\Morabraba\bin\Debug\Morabraba.pdb
 C:\Users\g15d1313\Source\Repos\Morabaraba\Morabraba\bin\Debug\FSharp.Core.dll
 C:\Users\g15d1313\Source\Repos\Morabaraba\Morabraba\bin\Debug\System.ValueTuple.dll
 C:\Users\g15d1313\Source\Repos\Morabaraba\Morabraba\bin\Debug\FSharp.Core.xml
-C:\Users\g15d1313\Source\Repos\Morabaraba\Morabraba\obj\Debug\Morabraba.fsprojResolveAssemblyReference.cache
 C:\Users\g15d1313\Source\Repos\Morabaraba\Morabraba\obj\Debug\Morabraba.exe
 C:\Users\g15d1313\Source\Repos\Morabaraba\Morabraba\obj\Debug\Morabraba.pdb
