@@ -7,3 +7,14 @@ C:\Users\g15d1313\Source\Repos\Morabaraba\Morabraba\bin\Debug\System.ValueTuple.
 C:\Users\g15d1313\Source\Repos\Morabaraba\Morabraba\bin\Debug\FSharp.Core.xml
 C:\Users\g15d1313\Source\Repos\Morabaraba\Morabraba\obj\Debug\Morabraba.exe
 C:\Users\g15d1313\Source\Repos\Morabaraba\Morabraba\obj\Debug\Morabraba.pdb
+C:\Users\Alchemist\Source\Repos\Morabaraba\Morabraba\bin\Debug\Morabraba.exe.config
+C:\Users\Alchemist\Source\Repos\Morabaraba\Morabraba\bin\Debug\Morabraba.XML
+C:\Users\Alchemist\Source\Repos\Morabaraba\Morabraba\bin\Debug\Morabraba.exe
+C:\Users\Alchemist\Source\Repos\Morabaraba\Morabraba\bin\Debug\Morabraba.pdb
+C:\Users\Alchemist\Source\Repos\Morabaraba\Morabraba\bin\Debug\FSharp.Core.dll
+C:\Users\Alchemist\Source\Repos\Morabaraba\Morabraba\bin\Debug\System.ValueTuple.dll
+C:\Users\Alchemist\Source\Repos\Morabaraba\Morabraba\bin\Debug\FSharp.Core.xml
+C:\Users\Alchemist\Source\Repos\Morabaraba\Morabraba\obj\Debug\Morabraba.fsprojResolveAssemblyReference.cache
+C:\Users\Alchemist\Source\Repos\Morabaraba\Morabraba\obj\Debug\Morabraba.fsproj.CopyComplete
+C:\Users\Alchemist\Source\Repos\Morabaraba\Morabraba\obj\Debug\Morabraba.exe
+C:\Users\Alchemist\Source\Repos\Morabaraba\Morabraba\obj\Debug\Morabraba.pdb
